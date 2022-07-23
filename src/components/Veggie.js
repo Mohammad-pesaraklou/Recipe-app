@@ -3,6 +3,7 @@ import {Splide ,SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css';
 import { shortex } from '../services/Function';
 import styled from 'styled-components';
+import axios from 'axios'
 //styles
 import styles from './Cart.module.css'
 
@@ -18,7 +19,7 @@ function Veggie() {
         } else {
             items = JSON.parse(localStorage.getItem("popular"))
             
-            const key = "41f60d0a1f694c349f753e086f5cfa79"
+            const key = "b3d5699b038d449ebe309774717aea19"
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9&tags=vegetarian`)  
             const data = await api.json() ;
             localStorage.setItem("popular", JSON.stringify(data))
@@ -34,22 +35,22 @@ function Veggie() {
     }, [])
 
 
-    if(veggie.length){
+    if(veggie){
      return  ( 
         <div >
+            <H2>our vegetarian picks</H2>
             <Splide options={{
                 perPage: 4,
                 pagination: false,
                 gap: "2rem",
-                drag: 'free'
+                drag: 'free',
             }}>
                 {
                     veggie.map(recipe => {
                        return (
-                        <SplideSlide key={recipe.id}>
+                           <SplideSlide key={recipe.id}>
                             <Wrapper>
-                                
-                            <img src={recipe.image} alt="image" style={{width: "200px"}}/>
+                            <img src={recipe.image} alt="image" />
                             <p>{shortex(recipe.title)}</p>
                             </Wrapper>
                         </SplideSlide>
@@ -74,17 +75,23 @@ const Wrapper = styled.div`
 margin: 2rem;
 text-align: center;
 position: relative;
+width: 100%;
 img{
+    width: 100%;
     border-radius: 20px;
+    z-index: 3;
 }
 p{
     font-size: 17px;
     color: #fff;
     font-family: 'Montserrat', Courier, monospace;
     position: absolute;
-    top: 4.5rem;
-    left: 40px;
-    font-weight: 800;
+    color: #f9fafa;
+    bottom: 10px;
+    left: 15px;
+    font-weight: 900;
+    text-align: center;
+    z-index: 15;
 }
 `
 const Loader = styled.div`
@@ -125,6 +132,10 @@ color: #fff;
 }
 }
 `
+const H2 = styled.h2`
+    font-family: 'Montserrat', Courier, monospace;
+    transform: translateX(50px);
+`;
 
 
 

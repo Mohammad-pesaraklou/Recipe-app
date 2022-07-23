@@ -10,15 +10,14 @@ const Popular = () => {
     const [ food , setFood] = useState([]);
 
     const getFood = async () => {
-
-
-      
-            const key = "41f60d0a1f694c349f753e086f5cfa79"
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9`)  
-            const data = await api.json() ;
-            setFood(data.recipes)
-        
-        
+            const key = "b3d5699b038d449ebe309774717aea19"
+            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${key}&number=21`)  
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setFood(data.recipes)
+            })
     }
 
 
@@ -27,8 +26,10 @@ const Popular = () => {
     }, [])
 
 
-    if(food.length){
+    if(food){
      return  ( 
+        <>
+        <H2>Most Popular food</H2>
      <div className={styles.container}>
               {
              food.map(recipe => <Cart 
@@ -36,7 +37,9 @@ const Popular = () => {
                 data={recipe}
                 />)
               }
-        </div>)
+        </div>
+        </>
+        )
     }
 
     return (
@@ -45,6 +48,11 @@ const Popular = () => {
         </div>
     );
 };
+const H2 = styled.h2`
+    font-family: 'Montserrat', Courier, monospace;
+    transform: translate(50px , 50px);
+`;
+
 
 
 

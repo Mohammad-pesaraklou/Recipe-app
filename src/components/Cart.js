@@ -12,7 +12,7 @@ import { shorten ,shortex } from '../services/Function';
 
 const Cart = ({data}) => {
     return (
-        <div>
+        <div className={styles.mainContainer}>
           
         <div className={styles.container} >
             
