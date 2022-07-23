@@ -3,9 +3,8 @@ import {Splide ,SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css';
 import { shortex } from '../services/Function';
 import styled from 'styled-components';
-import axios from 'axios'
-//styles
-import styles from './Cart.module.css'
+import {Link} from 'react-router-dom';
+
 
 
 function Veggie() {
@@ -50,8 +49,10 @@ function Veggie() {
                        return (
                            <SplideSlide key={recipe.id}>
                             <Wrapper>
-                            <img src={recipe.image} alt="image" />
-                            <p>{shortex(recipe.title)}</p>
+                                <Link to={`/recipe/${recipe.id}`}>
+                                    <img src={recipe.image} alt="image" />
+                                    <p>{shortex(recipe.title)}</p>
+                                </Link>
                             </Wrapper>
                         </SplideSlide>
                        )

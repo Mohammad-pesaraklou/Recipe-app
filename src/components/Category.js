@@ -37,7 +37,7 @@ const FromList = styled(NavLink)`
 text-decoration: none;
 margin-right: 2rem;
 color: white;
-background-color: #166974;
+background-color: #313131;
 width: 100px;
 height: 100px;
 text-align: center;
