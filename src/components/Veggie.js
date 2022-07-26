@@ -3,7 +3,7 @@ import {Splide ,SplideSlide} from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css';
 import { shortex } from '../services/Function';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,20 +12,11 @@ function Veggie() {
     const [ veggie , setVeggie] = useState([]);
 
     const getVeggie = async () => {
-        let items;
-        if (localStorage.getItem("popular") === null){
-            items = [];
-        } else {
-            items = JSON.parse(localStorage.getItem("popular"))
-            
+    
             const key = "b3d5699b038d449ebe309774717aea19"
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9&tags=vegetarian`)  
-            const data = await api.json() ;
-            localStorage.setItem("popular", JSON.stringify(data))
-                setVeggie(data.recipes)
-        }
-        
-
+            const data = await api.json();
+            setVeggie(data.recipes)
     }
 
 
@@ -33,9 +24,10 @@ function Veggie() {
         getVeggie()
     }, [])
 
-
+    
+     
     if(veggie){
-     return  ( 
+     return( 
         <div >
             <H2>our vegetarian picks</H2>
             <Splide options={{
@@ -58,7 +50,7 @@ function Veggie() {
                        )
                     })
                 }
-            </Splide>
+                         </Splide>
         </div>)
      }
           
@@ -73,10 +65,10 @@ function Veggie() {
 };
 
 const Wrapper = styled.div`
-margin: 2rem;
+/* margin: 2rem  ; */
 text-align: center;
 position: relative;
-width: 100%;
+/* width: 50%; */
 img{
     width: 100%;
     border-radius: 20px;

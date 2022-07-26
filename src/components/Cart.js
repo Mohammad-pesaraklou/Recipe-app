@@ -12,7 +12,8 @@ import { shorten ,shortex } from '../services/Function';
 
 const Cart = ({data}) => {
     return (
-        <Link to={`/recipe/${data.id}`}>
+        <div className={styles.mainContainer}>
+        <Link to={`/recipe/${data.id}`} className={styles.link}>
           
         <div className={styles.container} >
             
@@ -24,6 +25,7 @@ const Cart = ({data}) => {
          </div>
    
        </Link>
+       </div>
     );
 };
 

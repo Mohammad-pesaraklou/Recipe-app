@@ -8,26 +8,26 @@ const Search = () => {
     const navigate = useNavigate();
     const submitHandler = (event) => {
         event.preventDefault()
-        navigate('/search/' + search)
+        navigate('/searched/' + search)
     };
 
     return (
         <div>
             <FormStyle onSubmit={submitHandler}>
-                <FaSearch></FaSearch>
                 <input type="text" value={search} onChange={event => setSearch(event.target.value)}/>
+                <FaSearch></FaSearch>
             </FormStyle>
         </div>
     );
 };
 const FormStyle = styled.form`
-/* margin: 0rem 20rem; */
-position: relative;
 width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
+transform: translateX(-2.3%);
 input{
+    position: relative;
     border: none;
     outline: none;
     color: white;
@@ -35,18 +35,36 @@ input{
     font-size: 1.5rem;
     background: linear-gradient(35deg, #494949 , #313131);
     border-radius: 1rem;
-    width: 30%;
     font-family: Arial, Helvetica, sans-serif;
 }
 svg{
-    width: 100%;
-    position: absolute;
-    top: 50%; 
-    color: white;
-    left: 0%;
-    transform: translate(-155px , -5px);
-    
+color: white;
+position: absolute;
+left: 30%;
 }
+    @media (max-width: 1950px) {
+        input{
+            width: 40%;
+            height: 40px;
+            margin-left: 3rem;
+        }
+    }
+    @media (max-width: 1200px) {
+        input{
+            width: 50%;
+            margin-left: 1rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+    }
+  
+    @media (max-width: 485px) {
+        input{
+           padding: 0.5rem 1.8rem;
+            margin-left:1.5rem;
+        }
+    }
 `
 
 

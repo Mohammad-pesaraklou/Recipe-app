@@ -32,6 +32,9 @@ display: flex;
 justify-content: center;
 margin: 2rem 0rem;
 width: 100%;
+@media (max-width: 470px){
+    margin-left: 1.2rem;
+}
 `
 const FromList = styled(NavLink)`
 text-decoration: none;
@@ -73,6 +76,25 @@ svg{
     }
    
     }
+    @media (max-width: 1200px) {
+        
+    }
+  
+    @media (max-width: 768px) {
+
+    }
+  
+    @media (max-width: 555px) {
+    width:  80px;
+    height: 80px;
+    svg{
+        width: 40px;
+    }
+    h4{
+        font-size: 13px;
+    }
+    } 
+
 `
 
 

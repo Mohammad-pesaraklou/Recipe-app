@@ -1,6 +1,11 @@
 import React, { useState , useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { GiKnifeFork } from 'react-icons/gi';
+
+//styles
+import styles from './Cart.module.css';
+
 const Searched = () => {
 
     const params = useParams();
@@ -15,6 +20,7 @@ const Searched = () => {
             .then(data => {
                 const result = data.results
                 setSearchedFood(result)
+                console.log(params)
             })
     }
 
@@ -26,18 +32,28 @@ const Searched = () => {
 
 
     return (
+        <>
+                <Nav>
+                <Logo to={"/"}>
+                    <GiKnifeFork></GiKnifeFork>
+                    deliciousss
+                </Logo>
+            </Nav>
         <Grid>
             {
                 searchedFood.map(item => {
                     return(
-                        <Cart>
-                            <img  src={item.image} alt='food image'/>
-                            <h3>{item.title}</h3>
+                        <Cart to={"/recipe/" + item.id} key={item.id}>
+                            <div>
+                                 <img  src={item.image} alt='food image'/>
+                                 <h3>{item.title}</h3>
+                            </div>
                         </Cart>
                     )  
                 })
             }
         </Grid>
+        </>
     );
 };
 
@@ -47,21 +63,39 @@ grid-template-columns: repeat(auto-fit , minmax(13rem,1fr));
 grid-gap: 3rem;
 margin: 40px;
 `
-const Cart = styled.div`
+const Cart = styled(Link)`
 border-radius: 2rem;
-background: #082032;
 overflow: hidden;
+text-decoration: none;
 img{
 width:100%;
-/* border-radius: 2rem; */
+border-radius: 2rem;
 }
 h3{
     text-align: center;
     padding: 1rem;
     font-family: 'Montserrat', Courier, monospace;
     font-size: 16px;
-    color: white;
+   color: #082032;
 }
+`
+const Logo = styled(Link)`
+text-decoration: none;
+font-size: 1.5rem;
+justify-content: center;
+align-items: center;
+font-family: 'Lobster Two', cursive;
+color: #082032;
+
+`
+const Nav = styled.div`
+padding: 4rem 0rem;
+margin-left: 8rem;
+svg{
+  font-size: 2rem;
+}
+
+
 `
 
 

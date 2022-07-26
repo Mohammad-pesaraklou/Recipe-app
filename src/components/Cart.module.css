@@ -33,7 +33,9 @@
     color: #34a853;
     font-weight: bold;
   }
-  
+  .link{
+    text-decoration: none;
+  }
 
   
   @media (max-width: 470px) {

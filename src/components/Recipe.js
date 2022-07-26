@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+//styles
+import styles from './ProductDetail.module.css';
 
 const Recipe = () => {
 
@@ -13,6 +15,7 @@ const Recipe = () => {
       const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${key}`)
       const detailData = await data.json();
       setDetails(detailData)
+      
     }
 
     useEffect(() => {
@@ -20,33 +23,34 @@ const Recipe = () => {
     }, [params.name])
 
     return (
-        <Wrapper>
-                <div>
-                  <h3>{details.title}</h3>
+        <div className={styles.container}>
                   <img src={details.image} alt="image"/>
+                <div className={styles.textContainer}>
+                  <h3>{details.title}</h3>
                 </div>
-                <Info>
-                  <Button className={active === 'instruction' ? 'active' : ''} onClick={() => setActive("instructions")}>instructions</Button>
-                  <Button className={active === 'ingredient' ? 'active' : ''} onClick={() => setActive("ingredients")}>ingredients</Button>
-                </Info>
+                <div className={styles.buttonContainer}>
+                  <button  className={styles.button}onClick={() => setActive("instructions")}>instructions</button>
+                  <button className={styles.button} onClick={() => setActive("ingredients")}>ingredients</button>
+                </div>
+
                 {active === "instructions" && (
-                  <div>
-                  <h3 dangerouslySetInnerHTML={{__html: details.summary}}></h3>
-                  <h3 dangerouslySetInnerHTML={{__html: details.instructions}}></h3>
-                </div>
+                     <div>
+                        <h3 className={styles.description} dangerouslySetInnerHTML={{__html: details.instructions}}></h3>
+                        <h3 className={styles.description} dangerouslySetInnerHTML={{__html: details.summary}}></h3>
+                    </div>
                 )}
                 
-                {active === "ingredient" && (
+                {active === "ingredients" && ( 
                     <ul>
                     {
-                      details.extendedIngredients.map(ingredient => {
-                        <li key={ingredient.id}>{ingredient.original}</li>
-                      })
+                      details.extendedIngredients.map(ingredient => 
+                        <li className={styles.ing} key={ingredient.id}>{ingredient.original}</li>
+                      )
                     }
                   </ul>
                 )}
               
-        </Wrapper>
+        </div>
     );
 };
 
@@ -67,7 +71,7 @@ ul{
   margin-top: 2rem;  
 }
 `
-const Button = styled.button`
+const button = styled.button`
 padding: 1rem 2rem;
 color: #313131;
 background: white;
