@@ -4,6 +4,7 @@ import '@splidejs/splide/dist/css/splide.min.css';
 import { shortex } from '../services/Function';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Container, Grid, Typography } from '@mui/material';
 
 
 
@@ -28,13 +29,21 @@ function Veggie() {
      
     if(veggie){
      return( 
-        <div >
-            <H2>our vegetarian picks</H2>
-            <Splide options={{
+        <Container >
+            <Grid container>
+            <Grid item xs={12} mb={5}>
+                    <Typography variant='h4' color="secondary">
+                        Veggie Food
+                    </Typography>
+            </Grid>
+                <Grid item xs={12}>        
+                 <Splide options={{
                 perPage: 4,
                 pagination: false,
                 gap: "2rem",
                 drag: 'free',
+                autoplay:"true",
+                
             }}>
                 {
                     veggie.map(recipe => {
@@ -50,18 +59,12 @@ function Veggie() {
                        )
                     })
                 }
-                         </Splide>
-        </div>)
+                  </Splide>
+                </Grid>
+            </Grid>
+        </Container>)
      }
           
-    return (
-        <Loader>
-            <div className='ball'></div>
-            <div className='ball'></div>
-            <div className='ball'></div>
-            <span className='loader'>Loading...</span>
-        </Loader>
-    );
 };
 
 const Wrapper = styled.div`
@@ -71,7 +74,7 @@ position: relative;
 /* width: 50%; */
 img{
     width: 100%;
-    border-radius: 20px;
+    border-radius: 10px;
     z-index: 3;
 }
 p{
@@ -128,6 +131,7 @@ color: #fff;
 const H2 = styled.h2`
     font-family: 'Montserrat', Courier, monospace;
     transform: translateX(50px);
+    margin-bottom: 4rem;
 `;
 
 

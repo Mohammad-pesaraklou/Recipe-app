@@ -1,3 +1,4 @@
+import { Container, Grid } from '@mui/material';
 import React from 'react';
 
 import {FaPizzaSlice, FaHamburger} from 'react-icons/fa';
@@ -6,94 +7,66 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 const Category = () => {
     return (
-        <List>
+        <Container>
+            <Grid container>
+                <Grid item xs={12}>
+                <List>
             <FromList to="/cuisine/italian">
                 <FaPizzaSlice />
-                <h4>italian</h4>
+                <h4>Italian</h4>
             </FromList>
             <FromList to="/cuisine/american">
                 <FaHamburger />
-                <h4>american</h4>
+                <h4>American</h4>
             </FromList>
             <FromList to="/cuisine/thai">
                 <GiNoodles />
-                <h4>thai food</h4>
+                <h4>Thai food</h4>
             </FromList>
             <FromList to="/cuisine/Japanese">
                 <GiChopsticks />
-                <h4>japanese</h4>
+                <h4>Japanese</h4>
             </FromList>
         </List>
+                </Grid>
+            </Grid>
+        
+        </Container>
     );
 };
 
 const List = styled.div`
 display: flex;
 justify-content: center;
+align-items: center;
 margin: 2rem 0rem;
+margin-bottom: 7rem;
+gap: 20px;
 width: 100%;
-@media (max-width: 470px){
-    margin-left: 1.2rem;
-}
+
 `
+
 const FromList = styled(NavLink)`
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
 text-decoration: none;
-margin-right: 2rem;
 color: white;
-background-color: #313131;
-width: 100px;
-height: 100px;
+background-color: #EEBC1D;
+width: 130px;
+height: 130px;
 text-align: center;
 border-radius: 50%;
 cursor: pointer;
 h4{
     color: #f9fafa;
+    margin-top: 25px;
 }
 svg{
     width: 100px;
-    height: 30px;
-    transform: translateY(17px);
-    /* background-color: blue; */
-    
+    height: 40px;
 }
-&.active{
-    background: linear-gradient(to right #f27121, #e94057);
-    svg{
-        color: white;
-    }
-    h3{
-        color: white;
-    }
-   
-}
-&:hover{
-    background: linear-gradient(to right #f27121, #e94057);
-    svg{
-        color: white;
-    }
-    h3{
-        color: white;
-    }
-   
-    }
-    @media (max-width: 1200px) {
-        
-    }
-  
-    @media (max-width: 768px) {
-
-    }
-  
-    @media (max-width: 555px) {
-    width:  80px;
-    height: 80px;
-    svg{
-        width: 40px;
-    }
-    h4{
-        font-size: 13px;
-    }
-    } 
 
 `
 

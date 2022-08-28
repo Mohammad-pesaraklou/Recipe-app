@@ -1,8 +1,3 @@
-const shorten = (title) => {
-    const short = title.split(" ")
-    const newName = `${short[0]} ${short[1]} ${short[2]} ${short[3]} ${short[4]} ${short[5]} ${short[6]} ${short[7]} ${short[8]}`
-    return newName;
-}
 
 const shortex = (title) => {
     const short = title.split(" ")
@@ -10,4 +5,18 @@ const shortex = (title) => {
     return newName;
 }
 
-export {shorten , shortex}
+const quantityCount = (state , id) => {
+const index = state.selectedItems.findIndex(item => item.id === id)
+if(index === -1){
+    return false
+}
+return state.selectedItems[index].quantity;
+}
+
+const isInCart = (state , id) => {
+    const result = !!state.selectedItems.find(item => item.id === id)
+    return result
+}
+
+
+export {shortex , quantityCount , isInCart}

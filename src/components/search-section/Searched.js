@@ -1,14 +1,22 @@
 import React, { useState , useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GiKnifeFork } from 'react-icons/gi';
-
+import { Avatar,  IconButton} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
 //styles
 import styles from './Cart.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { increase } from '../../Redux/CartAction';
 
 const Searched = () => {
 
+    const state = useSelector(state => state)
     const params = useParams();
+    const dispatch = useDispatch();
+
 
     const [ searchedFood , setSearchedFood] = useState([]);
 
@@ -31,33 +39,28 @@ const Searched = () => {
 
 
 
+
     return (
         <>
-                <Nav>
-                <Logo to={"/"}>
-                    <GiKnifeFork></GiKnifeFork>
-                    deliciousss
-                </Logo>
-            </Nav>
         <Grid>
             {
                 searchedFood.map(item => {
-                    return(
-                        <Cart to={"/recipe/" + item.id} key={item.id}>
-                            <div>
-                                 <img  src={item.image} alt='food image'/>
-                                 <h3>{item.title}</h3>
-                            </div>
-                        </Cart>
-                    )  
-                })
+                    <Cart to={"/recipe/" + item.id} key={item.id}>
+                    <div>
+                         <img  src={item.image} alt='food image'/>
+                         <h3>{item.title}</h3>
+                    </div>
+                    </Cart>
+                    })  
             }
         </Grid>
-        </>
-    );
+    
+</>
+);
 };
 
 const Grid = styled.div`
+
 display: grid;
 grid-template-columns: repeat(auto-fit , minmax(13rem,1fr));
 grid-gap: 3rem;
@@ -72,11 +75,11 @@ width:100%;
 border-radius: 2rem;
 }
 h3{
-    text-align: center;
-    padding: 1rem;
-    font-family: 'Montserrat', Courier, monospace;
-    font-size: 16px;
-   color: #082032;
+text-align: center;
+padding: 1rem;
+font-family: 'Montserrat', Courier, monospace;
+font-size: 16px;
+color: #082032;
 }
 `
 const Logo = styled(Link)`
@@ -92,11 +95,10 @@ const Nav = styled.div`
 padding: 4rem 0rem;
 margin-left: 8rem;
 svg{
-  font-size: 2rem;
+font-size: 2rem;
 }
 
 
 `
-
-
+    
 export default Searched;

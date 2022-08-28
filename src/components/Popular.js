@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Cart from './Cart';
-import { shortex } from '../services/Function';
-
+import Cart from '../shared/Cart';
+import { CircularProgress, Container,Grid, Typography } from '@mui/material';
 import styled from 'styled-components'
 //styles
-import styles from './Home.module.css';
+
 const Popular = () => {
 
     const [ food , setFood] = useState([]);
@@ -28,31 +27,34 @@ const Popular = () => {
 
     if(food){
      return  ( 
-        <>
-        <H2>Most Popular food</H2>
-     <div className={styles.container}>
-              {
-             food.map(recipe => <Cart 
-                key={recipe.id}
-                data={recipe}
-                />)
-              }
-        </div>
-        </>
+        <Container>
+            <Grid container spacing={2} mt={20}>
+                <Grid item xs={12} mb={5}>
+                    <Typography variant='h4' color="secondary">
+                        Most Popular Food
+                    </Typography>
+                </Grid>
+                        {
+                            food.map(recipe => 
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id}>
+        
+                            <Cart 
+                             data={recipe}
+                             />
+                             </Grid>
+                             )
+                            }
+            </Grid>
+        </Container>
         )
     }
 
     return (
-        <div>
-            loading
+        <div style={{display:"flex",justifyContent:"center", alignItems:"center"}}>
+            <CircularProgress size="100px" color='warning'/>
         </div>
     );
 };
-const H2 = styled.h2`
-    font-family: 'Montserrat', Courier, monospace;
-    transform: translate(50px , 50px);
-`;
-
 
 
 

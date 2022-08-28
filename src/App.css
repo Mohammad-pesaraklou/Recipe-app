@@ -1,0 +1,10 @@
+*{
+    /* padding: 0; */
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+/* background: #14161a; */
+html{
+height: 100vh;
+}
