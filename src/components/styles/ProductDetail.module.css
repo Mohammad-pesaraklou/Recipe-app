@@ -142,15 +142,27 @@
     .textContainer {
       margin: 0;
     }
+
+    .price {
+      margin-bottom: 40px;
+    }
+    .button{
+      padding: 0.5rem 1rem;
+      margin: 3rem 1.5rem;
+    }
   }
   
   @media (max-width: 370px) {
     .buttonContainer {
-      flex-direction: column;
       align-items: flex-start;
     }
     .price {
       margin-bottom: 40px;
+    }
+    .button{
+      padding: 0.5rem 1rem;
+      margin: 3rem 1rem;
+
     }
   }
   

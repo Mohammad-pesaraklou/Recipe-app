@@ -1,139 +1,116 @@
-import React, { useEffect , useState } from 'react';
-import {Splide ,SplideSlide} from '@splidejs/react-splide'
-import '@splidejs/splide/dist/css/splide.min.css';
-import { shortex } from '../services/Function';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Container, Grid, Typography } from '@mui/material';
-
+import React, { useEffect, useState } from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
+import { shortex } from "../services/Function";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Container, Grid, Typography } from "@mui/material";
+import AliceCarousel from "react-alice-carousel";
+//style
+import styles from './styles/Veggie.module.css';
 
 
 function Veggie() {
+  const [veggie, setVeggie] = useState([]);
 
-    const [ veggie , setVeggie] = useState([]);
+  const getVeggie = async () => {
+    const key = "b3d5699b038d449ebe309774717aea19";
+    const api = await fetch(
+      `https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9&tags=vegetarian`
+    );
+    const data = await api.json();
+    setVeggie(data.recipes);
+  };
 
-    const getVeggie = async () => {
-    
-            const key = "b3d5699b038d449ebe309774717aea19"
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${key}&number=9&tags=vegetarian`)  
-            const data = await api.json();
-            setVeggie(data.recipes)
-    }
+  useEffect(() => {
+    getVeggie();
+  }, []);
 
+  const items = veggie?.map((recipe) => (
+    <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
+      <Div>
+        <img
+          src={recipe.image}
+          alt="image"
+          className={styles.img}
+        />
+        <p className={styles.text}>{shortex(recipe.title)}</p>
+      </Div>
+    </Link>
+  ));
 
-    useEffect(() => {
-        getVeggie()
-    }, [])
+  const responsive = {
+    0: {
+      items: 2,
+    },
+    580: {
+      items: 2,
+    },
+    720:{
+      items: 3
+    },
+    877: {
+      items: 4,
+    },
+    1000: {
+      items: 5,
+    },
+  };
 
-    
-     
-    if(veggie){
-     return( 
-        <Container >
-            <Grid container>
-            <Grid item xs={12} mb={5}>
-                    <Typography variant='h4' color="secondary">
-                        Veggie Food
-                    </Typography>
-            </Grid>
-                <Grid item xs={12}>        
-                 <Splide options={{
-                perPage: 4,
-                pagination: false,
-                gap: "2rem",
-                drag: 'free',
-                autoplay:"true",
-                
-            }}>
-                {
-                    veggie.map(recipe => {
-                       return (
-                           <SplideSlide key={recipe.id}>
-                            <Wrapper>
-                                <Link to={`/recipe/${recipe.id}`}>
-                                    <img src={recipe.image} alt="image" />
-                                    <p>{shortex(recipe.title)}</p>
-                                </Link>
-                            </Wrapper>
-                        </SplideSlide>
-                       )
-                    })
-                }
-                  </Splide>
-                </Grid>
-            </Grid>
-        </Container>)
-     }
-          
-};
-
-const Wrapper = styled.div`
-/* margin: 2rem  ; */
-text-align: center;
-position: relative;
-/* width: 50%; */
-img{
-    width: 100%;
-    border-radius: 10px;
-    z-index: 3;
-}
-p{
-    font-size: 17px;
-    color: #fff;
-    font-family: 'Montserrat', Courier, monospace;
-    position: absolute;
-    color: #f9fafa;
-    bottom: 10px;
-    left: 15px;
-    font-weight: 900;
-    text-align: center;
-    z-index: 15;
-}
-`
-const Loader = styled.div`
-display: flex;
-align-items: flex-end;
-justify-content: space-between;
-width: 120px;
-height: 75px;
-flex-wrap: wrap;
-.loader {
-font-size: 22px;
-text-transform: uppercase;
-margin: auto;
-color: #fff;
-.ball {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #fff;
-    animation: bounce 0.5s alternate infinite;
+  if (veggie) {
+    return (
+      <Container>
+        <Grid container>
+          <Grid item xs={12} mb={5}>
+            <Typography variant="h4" color="secondary">
+              Veggie Food
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <AliceCarousel
+              mouseTracking
+              infinite
+              autoPlayInterval={1000}
+              animationDuration={1500}
+              disableDotsControls
+              disableButtonsControls
+              responsive={responsive}
+              items={items}
+              autoPlay
+            />
+          </Grid>
+        </Grid>
+      </Container>
+    );
+  }
 }
 
-.ball:nth-child(2){
-    animation-delay: 0.16s;
-}
-.ball:nth-child(3){
-    animation-delay: 0.32s;
-}
-
-
-@keyframes bounce {
-    from{
-        transform: scaleX(1.25);
-    }
-    to{
-        transform: translateY((-50px)) scaleX(1);
-    }
-}
-}
-`
-const H2 = styled.h2`
-    font-family: 'Montserrat', Courier, monospace;
-    transform: translateX(50px);
-    margin-bottom: 4rem;
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
+const Wrap = styled.p`
+  font-size: 17px;
+  color: #cecece;
+  font-family: "Montserrat", Courier, monospace;
+  position: absolute;
+  color: #f9fafa;
+  top: 50%;
+  font-weight: 900;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+`;
 
+const H2 = styled.h2`
+  font-family: "Montserrat", Courier, monospace;
+  transform: translateX(50px);
+  margin-bottom: 4rem;
+`;
 
 export default Veggie;

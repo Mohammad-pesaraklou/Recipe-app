@@ -1,0 +1,30 @@
+.img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.50;
+}
+.text{
+    font-size: 17px;
+    color: #cecece;
+    font-family: "Montserrat", Courier, monospace;
+    position: absolute;
+    color: #f9fafa;
+    top: 50%;
+    font-weight: 900;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+}
+    @media (max-width: 480px){
+        .img{
+            height: 150px;
+            width: 150px;
+        
+        }
+        .text{
+            font-size: 14px;
+        }
+    }

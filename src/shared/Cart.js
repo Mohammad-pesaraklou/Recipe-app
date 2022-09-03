@@ -39,10 +39,10 @@ const Cart = ({data}) => {
         </Link>
         <div>
         {quantityCount(state , data.id) === 1 && 
-            <Button variant="contained" color="primary" sx={{marginBottom: 2}}  className={styles.smallButton} onClick={() => dispatch(removeItem(data))}><DeleteIcon sx={{fontSize: "small"}}/></Button>
+            <Button variant="contained" color="primary" sx={{mb:{xs: '18px',md: 2}}}  className={styles.smallButton} onClick={() => dispatch(removeItem(data))}><DeleteIcon sx={{fontSize: "small"}}/></Button>
             }
             {
-                quantityCount(state , data.id) > 1 && <Button variant="contained" sx={{marginBottom: 2}}   className={styles.smallButton} onClick={() => dispatch(decrease(data))}><RemoveIcon sx={{fontSize: "small"}}/></Button>
+                quantityCount(state , data.id) > 1 && <Button variant="contained" sx={{mb:{xs: '18px',md: 2}}}   className={styles.smallButton} onClick={() => dispatch(decrease(data))}><RemoveIcon sx={{fontSize: "small"}}/></Button>
             }
             {
                 quantityCount(state , data.id) > 0 && 
@@ -54,8 +54,8 @@ const Cart = ({data}) => {
 
               {
                     isInCart(state , data.id) ? 
-                    <Button variant="contained" color="primary" sx={{marginBottom: 2}}  className={styles.smallButton} onClick={() => dispatch(increase(data))}><AddIcon sx={{fontSize: "small"}}/></Button> :
-                    <Button variant="contained" color="primary" endIcon={<AddIcon />}  onClick={() => dispatch(addItem(data))} sx={{marginBottom: 2,fontFamily:"Montserrat",fontWeight:"700"}}>ADD-ITEM</Button>
+                    <Button variant="contained" color="primary" sx={{mb:{xs: '18px',md: 2}}}  className={styles.smallButton} onClick={() => dispatch(increase(data))}><AddIcon sx={{fontSize: "small"}}/></Button> :
+                    <Button variant="contained" color="primary" endIcon={<AddIcon />}  onClick={() => dispatch(addItem(data))} sx={{mb:{xs: '18px',md: 2},fontFamily:"Montserrat",fontWeight:"700"}}>ADD-ITEM</Button>
              }  
             </div>
          </div>

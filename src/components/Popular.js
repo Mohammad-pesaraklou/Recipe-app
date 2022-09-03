@@ -27,17 +27,17 @@ const Popular = () => {
 
     if(food){
      return  ( 
-        <Container>
-            <Grid container spacing={2} mt={20}>
+        <Container maxWidth="lg">
+            <Grid container spacing={2} mt={20}  p={6}>
                 <Grid item xs={12} mb={5}>
                     <Typography variant='h4' color="secondary">
                         Most Popular Food
                     </Typography>
                 </Grid>
+                
                         {
                             food.map(recipe => 
                             <Grid item xs={12} sm={6} md={4} lg={3} key={recipe.id}>
-        
                             <Cart 
                              data={recipe}
                              />

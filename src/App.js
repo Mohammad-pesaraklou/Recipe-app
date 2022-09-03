@@ -11,7 +11,7 @@ import Recipe from './components/Recipe';
 import Navbar from './components/Navbar';
 import { createTheme , ThemeProvider} from '@mui/material/styles'
 import ScrollToTop from './shared/ScrollToTop';
-
+import Footer from './components/Footer'
 //redux store
 import store from './Redux/store';
 import ShopFood from './components/ShopFood';

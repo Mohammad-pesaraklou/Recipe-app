@@ -30,15 +30,15 @@ const CartFood = (props) => {
                 <p>{pricePerServing} $</p>
             </div>
             <div>
-                <span className={styles.quantity}>{quantity}</span>
             </div>
             <div className={styles.buttonContainer}>
                 {
                     quantity > 1 ?
-                    <Button variant="contained" sx={{m:1}} onClick={() => dispatch(decrease(props.itemData))}>-</Button> :
-                    <Button variant="contained" sx={{m:1}} onClick={() => dispatch(removeItem(props.itemData))}><img src={trashIcon} alt='trashIcon'/></Button>
+                    <Button variant="contained" sx={{mb:{xs: '18px',md: 2}}} onClick={() => dispatch(decrease(props.itemData))}>-</Button> :
+                    <Button variant="contained" sx={{mb:{xs: '18px',md: 2}}} onClick={() => dispatch(removeItem(props.itemData))}><img src={trashIcon} style={{height: '25px'}} alt='trashIcon'/></Button>
                 }
-                <Button variant="contained" sx={{m:1}} onClick={() => dispatch(increase(props.itemData))}>+</Button>
+                <span className={styles.quantity} style={{padding: "15px" , fontSize: "30px"}}>{quantity}</span>
+                <Button variant="contained" sx={{mb:{xs: '18px',md: 2}}} onClick={() => dispatch(increase(props.itemData))}>+</Button>
             </div>
     </div>
     );

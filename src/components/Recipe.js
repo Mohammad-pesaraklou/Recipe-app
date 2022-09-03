@@ -24,8 +24,8 @@ const Recipe = () => {
     }, [params.name])
 
     return (
-      <div style={{height: "150vh"}}>
-      <Container>
+      <div style={{minHeight: "100vh"}}>
+      <Container maxWidth="lg">
           <div className={styles.container}>
         <Grid container>
           <Grid item xs={12}>
@@ -44,6 +44,7 @@ const Recipe = () => {
                   <button  className={styles.button}onClick={() => setActive("instructions")}>instructions</button>
                   <button className={styles.button} onClick={() => setActive("ingredients")}>ingredients</button>
             </div>
+            <div style={{padding: '10px'}}>
           {active === "instructions" && (
                      <div>
                         <h3 className={styles.description} dangerouslySetInnerHTML={{__html: details.instructions}}></h3>
@@ -60,6 +61,7 @@ const Recipe = () => {
                     }
                   </ul>
                 )}
+            </div>
           </Grid>
         </Grid>
         </div>
